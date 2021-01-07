@@ -10,6 +10,7 @@ export default function RenderCustomizePizza (props){
                         <th colSpan="6">Pizza</th>
                     </tr>
                     <tr>
+                        <th>Sl.No</th>
                         <th rowSpan="2"></th>
                         <th rowSpan="2">Items</th>
                         <th rowSpan="2">Price</th>
@@ -21,17 +22,43 @@ export default function RenderCustomizePizza (props){
                 <tbody> 
                     {
                         props.piz && props.piz.map((piz,index)=>{
-                            return(
-                                <tr key={index}>
-                                    <td>{piz.title}</td>
-                                    <td>{piz.name}</td>
-                                    <td>&nbsp; &#8377;{piz.price}</td>
-                                    <td><input type="number" value={piz.qty} /></td>
-                                    <td>&nbsp; &#8377;{piz.price * piz.qty}</td>
-                                    <td></td>
-                                </tr>
-                            )
+                            if(piz){
 
+                                return(
+                                    <tr key={index}>
+                                        {
+                                                index%3 === 0 &&
+                                        <td rowSpan="3">
+                                            
+                                               {(index/3)+1}
+                                            
+                                        </td>
+                            }
+                                        <td>{piz.title}</td>
+                                        <td>{piz.name}</td>
+                                        <td>&nbsp; &#8377;{piz.price}</td>
+                                        {
+                                                index%3 === 0 &&
+                                                <React.Fragment>
+                                        <td rowSpan="3"><input type="number" 
+                                            min="1" max="10"
+                                            defaultValue={piz.qty} 
+                                            onChange={(e)=>props.changeHandler(e,index)}
+                                        /></td>
+                                        <td rowSpan="3">&nbsp; &#8377;{piz.price * piz.qty}</td>
+                                        </React.Fragment>
+                                         }
+                                        {
+                                              
+                                            index%3 === 0 &&
+                                            <td rowSpan="3"></td>
+                                        }
+                                        
+                                    </tr>
+                                )
+    
+                            }
+                           
                         })
                     }
 

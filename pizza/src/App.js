@@ -66,7 +66,6 @@ class App extends React.Component {
         this.setState({
           currentPizza: currPizz
         })
-        console.log(this.state.currentPizza);
       }
 
       currentPizza(){
