@@ -4,6 +4,7 @@ import CreatedPizza from './Container/CreatedPizza';
 import './App.css';
 import './CSS/flexBox.css';
 import './CSS/padding.css';
+import './CSS/table.css'
 
 class App extends React.Component {
 
@@ -36,14 +37,15 @@ class App extends React.Component {
                     ]
                   }
                 },
-                selectedPizza:{}
+                selectedPizza:[],
+                currentPizza:[]
              }
             
             }
 
+     
+
       handleChange(e){
-        console.log(e.target.value);
-        console.log(e.target.name);
         const name = e.target.name;
         let items=e.target.value;
         this.setState(state=>{
@@ -57,13 +59,38 @@ class App extends React.Component {
             }
           }
         })
-        console.log(this.state.selectedPizza);
       }
+
+      customizePizza(){
+        let currPizz = this.currentPizza();
+        this.setState({
+          currentPizza: currPizz
+        })
+        console.log(this.state.currentPizza);
+      }
+
+      currentPizza(){
+        let list = [];
+        for (let [key, value] of Object.entries(this.state.selectedPizza)) {
+            let cost = value.items.split(":");
+            let obj = {
+                title: key,
+                price: parseInt(cost[1]),
+                name: cost[0],
+                qty:parseInt(1),
+                isAddCart: false,
+                isRemove: false
+            }
+            list.push(obj);
+        }
+        return list;
+      }
+
     render(){
         return(
             <main className="flex">
-                <MakePizza pizza={this.state.pizza} selectedPizza={this.state.selectedPizza} changeHandler={this.handleChange.bind(this)}/>
-                <CreatedPizza selectedPizza={this.state.selectedPizza}/>
+                <MakePizza pizza={this.state.pizza} selectedPizza={this.state.selectedPizza} customizePizza={this.customizePizza.bind(this)} changeHandler={this.handleChange.bind(this)}/>
+                <CreatedPizza selectedPizza={this.state.selectedPizza} currentPizza={this.state.currentPizza}/>
             </main>
         )
     }

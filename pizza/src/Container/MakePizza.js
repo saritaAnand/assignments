@@ -63,6 +63,8 @@ export default function CreatePizza(props){
                 </select>
             }
             </div>
+
+            <button className="margin-top-10" onClick={props.customizePizza}>Cutomize Pizza</button>
             <div className="pad-top-25">Note:Please select items to create Pizza</div>
         </section>
     )
