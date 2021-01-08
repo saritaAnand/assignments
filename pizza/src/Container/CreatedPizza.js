@@ -3,8 +3,9 @@ import RenderCustomizePizza from '../Component/CustomizePizzaTable';
 
 export default function CreatePizza(props){
 
+    const [wholePizArr,setWholePizArr] = useState(null);
     const comPizArr = useRef();
-    const [wholePizArr,setWholePizArr] = useState(()=>{return(null)});
+    
 
     function completePizzaArr(p){
         comPizArr.current = p.concat(comPizArr.current);
@@ -24,18 +25,27 @@ export default function CreatePizza(props){
 
     function handleChangeQty(e,ind){
         let arr=qtyChangeWholeArr(e.target.value,ind);
-        setWholePizArr(arr);
+        comPizArr.current = arr;
+        setWholePizArr(comPizArr.current);
     }
 
     useEffect(()=>{
         completePizzaArr(props.currentPizza);
     },[props.currentPizza])
 
+    function removerr(ind){
+        comPizArr.current.splice(ind,3);
+        console.log(comPizArr.current);
+    }
+
     return(
         <section className="height-full" style={{width:"100%"}}>
             <RenderCustomizePizza
              changeHandler={handleChangeQty}
+             remove={props.remove}
+             removerr={removerr}
              piz={wholePizArr}/>
+             
         </section>
     )
 }

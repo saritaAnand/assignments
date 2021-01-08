@@ -2,6 +2,12 @@ import React from 'react';
 
 
 export default function RenderCustomizePizza (props){
+    function handleRemove(ind,arr){
+        props.removerr(ind);
+        props.remove(ind,arr);
+    }
+     
+
     return(
         <section className="flex">
               <table className="client">
@@ -15,7 +21,7 @@ export default function RenderCustomizePizza (props){
                         <th rowSpan="2">Items</th>
                         <th rowSpan="2">Price</th>
                         <th rowSpan="2">Quantity</th>
-                        <th rowSpan="2">Per Unit Total Price</th>
+                        {/* <th rowSpan="2">Per Unit Total Price</th> */}
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -45,13 +51,14 @@ export default function RenderCustomizePizza (props){
                                             defaultValue={piz.qty} 
                                             onChange={(e)=>props.changeHandler(e,index)}
                                         /></td>
-                                        <td rowSpan="3">&nbsp; &#8377;{piz.price * piz.qty}</td>
                                         </React.Fragment>
                                          }
+                                        {/* <td>&nbsp; &#8377;{piz.price * piz.qty}</td> */}
+                                        
                                         {
                                               
                                             index%3 === 0 &&
-                                            <td rowSpan="3"></td>
+                                            <td rowSpan="3"><button onClick={()=>handleRemove(index,props.piz)}>Remove Item</button></td>
                                         }
                                         
                                     </tr>

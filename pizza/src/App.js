@@ -38,7 +38,8 @@ class App extends React.Component {
                   }
                 },
                 selectedPizza:[],
-                currentPizza:[]
+                currentPizza:[],
+                afterRemoveWholeArr:[]
              }
             
             }
@@ -85,11 +86,21 @@ class App extends React.Component {
         return list;
       }
 
+      remove(ind,arr){
+        console.log(arr);
+        console.log(ind);
+        arr.splice(ind,3);
+        this.setState({
+          afterRemoveWholeArr:arr
+        })
+        // console.log(this.state.afterRemoveWholeArr)
+      }
+
     render(){
         return(
             <main className="flex">
                 <MakePizza pizza={this.state.pizza} selectedPizza={this.state.selectedPizza} customizePizza={this.customizePizza.bind(this)} changeHandler={this.handleChange.bind(this)}/>
-                <CreatedPizza selectedPizza={this.state.selectedPizza} currentPizza={this.state.currentPizza}/>
+                <CreatedPizza selectedPizza={this.state.selectedPizza} currentPizza={this.state.currentPizza} afterRemoveWholeArr={this.state.afterRemoveWholeArr} remove={this.remove.bind(this)}/>
             </main>
         )
     }
