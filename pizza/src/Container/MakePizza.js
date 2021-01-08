@@ -5,7 +5,7 @@ export default function CreatePizza(props){
         
        
         <section className="height-full pad-top-10" style={{ backgroundColor:"skyblue",padding:"5%"}}>
-            <h2>Customize Pizza</h2>
+            <h2 onClick={()=>console.log(props.currentPizza)}>Customize Pizza</h2>
 
             <label htmlFor="toppings" className="capitalize pad-top-2"><b>Toppings</b></label><br/>
             <select id="toppings" className="form-control" 

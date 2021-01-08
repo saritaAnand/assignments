@@ -39,7 +39,9 @@ class App extends React.Component {
                 },
                 selectedPizza:[],
                 currentPizza:[],
-                afterRemoveWholeArr:[]
+                afterRemoveWholeArr:[],
+                isDisable: false,
+                removeTotQty: 0
              }
             
             }
@@ -86,21 +88,67 @@ class App extends React.Component {
         return list;
       }
 
+      handleRemove(ind,arr){
+        this.remove(ind,arr);
+        // let qty = this.toatQtyOnRemove();
+        // this.totOnRem(qty);
+
+      }
       remove(ind,arr){
-        console.log(arr);
-        console.log(ind);
         arr.splice(ind,3);
         this.setState({
           afterRemoveWholeArr:arr
+        },()=>this.toatQtyOnRemove()) 
+        console.log(this.state.afterRemoveWholeArr)
+      }
+
+      totOnRem(q){
+        //let q = this.toatQtyOnRemove();
+        this.setState({
+          removeTotQty:q
         })
-        // console.log(this.state.afterRemoveWholeArr)
+        console.log(this.state.removeTotQty)
+      }
+
+      toatQtyOnRemove(){
+        let q = 0;
+          this.state.afterRemoveWholeArr && this.state.afterRemoveWholeArr.map((item,index)=>{
+              if(item){
+                console.log(item.qty)
+                console.log(item.price)
+                console.log(q)
+                  return(
+                      q = q + parseInt(item.qty) * parseInt(item.price)
+                  )
+              }  
+          })
+          this.totOnRem(q);
+          console.log(q);
+          
+      }
+
+
+      disableMakePizz(){
+        this.setState({
+          isDisable: true
+        })
       }
 
     render(){
         return(
             <main className="flex">
-                <MakePizza pizza={this.state.pizza} selectedPizza={this.state.selectedPizza} customizePizza={this.customizePizza.bind(this)} changeHandler={this.handleChange.bind(this)}/>
-                <CreatedPizza selectedPizza={this.state.selectedPizza} currentPizza={this.state.currentPizza} afterRemoveWholeArr={this.state.afterRemoveWholeArr} remove={this.remove.bind(this)}/>
+              {
+                !this.state.isDisable && 
+              
+                <MakePizza pizza={this.state.pizza} currentPizza={this.state.currentPizza} selectedPizza={this.state.selectedPizza} customizePizza={this.customizePizza.bind(this)} changeHandler={this.handleChange.bind(this)}/>
+              }
+                <CreatedPizza 
+                selectedPizza={this.state.selectedPizza} 
+                disableMakePizz={this.disableMakePizz.bind(this)}
+                currentPizza={this.state.currentPizza} 
+                afterRemoveWholeArr={this.state.afterRemoveWholeArr} 
+                rm={this.state.removeTotQty}   
+                remove={this.handleRemove.bind(this)}/>
             </main>
         )
     }

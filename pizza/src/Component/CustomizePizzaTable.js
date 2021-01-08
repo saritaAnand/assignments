@@ -42,7 +42,7 @@ export default function RenderCustomizePizza (props){
                             }
                                         <td>{piz.title}</td>
                                         <td>{piz.name}</td>
-                                        <td>&nbsp; &#8377;{piz.price}</td>
+                                        <td>&nbsp; &#8377;{piz.price ? piz.price.toFixed(2):0}</td>
                                         {
                                                 index%3 === 0 &&
                                                 <React.Fragment>
@@ -50,6 +50,7 @@ export default function RenderCustomizePizza (props){
                                             min="1" max="10"
                                             defaultValue={piz.qty} 
                                             onChange={(e)=>props.changeHandler(e,index)}
+                                            readOnly = {props.disableMakePizz ? true:false}
                                         /></td>
                                         </React.Fragment>
                                          }

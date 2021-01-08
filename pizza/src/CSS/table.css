@@ -37,3 +37,7 @@
     position: sticky;
     top: 0;
   }
+
+  .bdr-btm{
+    border-bottom: 1px solid #dce0e0;
+}
