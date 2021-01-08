@@ -5,7 +5,7 @@ export default function CreatePizza(props){
         
        
         <section className="height-full pad-top-10" style={{ backgroundColor:"skyblue",padding:"5%"}}>
-            <h2 onClick={()=>console.log(props.currentPizza)}>Customize Pizza</h2>
+            <h2>Customize Pizza</h2>
 
             <label htmlFor="toppings" className="capitalize pad-top-2"><b>Toppings</b></label><br/>
             <select id="toppings" className="form-control" 
@@ -63,9 +63,12 @@ export default function CreatePizza(props){
                 </select>
             }
             </div>
+            {
+                    props.selectedPizza && props.selectedPizza.pizzaType && props.selectedPizza.pizzaType.items &&
 
             <button className="margin-top-10" onClick={props.customizePizza}>Cutomize Pizza</button>
-            <div className="pad-top-25">Note:Please select items to create Pizza</div>
+}
+            <div className="pad-top-25">Note:Please select items to customize Pizza</div>
         </section>
     )
 }

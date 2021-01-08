@@ -34,7 +34,7 @@ export default function CreatePizza(props){
 
     function addTotal(){
         let qty = 0;
-        console.log(comPizArr.current);
+        
         comPizArr.current && comPizArr.current.map((item,index)=>{
             if(item){
                 return(
@@ -42,7 +42,7 @@ export default function CreatePizza(props){
                 )
             }  
         })
-        console.log(qty);
+       
         setTotQty(qty);
     }
 
@@ -75,7 +75,8 @@ export default function CreatePizza(props){
      }
 
     return(
-        <section className="height-full" style={{width:"100%"}}>
+        <section className="height-full pad-top-5" style={{width:"100%"}}>
+            <h2 style={{textAlign:"center"}}>Selected Pizza Summary</h2>
             <RenderCustomizePizza
              changeHandler={handleChangeQty}
              remove={props.remove}
@@ -90,7 +91,7 @@ export default function CreatePizza(props){
              {
                  totQty !== "0" && 
                  
-                <div className=" margin-top-4 " style={{textAlign:"center"}}>Total Payable Quantity:&nbsp; &#8377;{totQty ?totQty : null }</div>
+                <div className="margin-top-2" style={{textAlign:"center"}}>Total Payable Quantity:&nbsp; &#8377;{totQty ?totQty : null }</div>
              }
             
 

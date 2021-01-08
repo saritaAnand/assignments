@@ -69,7 +69,6 @@ class App extends React.Component {
         this.setState({
           currentPizza: currPizz
         })
-        this.resetSelectedPizza();
       }
 
       currentPizza(){
@@ -87,12 +86,6 @@ class App extends React.Component {
             list.push(obj);
         }
         return list;
-      }
-
-      resetSelectedPizza(){
-        this.setState({
-          selectedPizza:{}
-        })
       }
 
       handleRemove(ind,arr){
