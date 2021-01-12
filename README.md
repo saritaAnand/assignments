@@ -7,7 +7,7 @@
 ## Procedure:
 1. From Customise Pizza, various options are selected from the dropdown. 
 2. After Selecting various options, Pizza Summary Table is prepared where we can change quantity.
-```Note: After Removing Quantity, it is mandatory to click Add All Items To Cart button```
+
 
 <img width="1440" alt="1" src="https://user-images.githubusercontent.com/41993796/103980156-52784700-51a5-11eb-9cf8-1b0a9083990a.png">
 
